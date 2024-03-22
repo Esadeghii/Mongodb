@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const aws = require('aws-sdk');
