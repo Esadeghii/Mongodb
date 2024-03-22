@@ -40,7 +40,8 @@ aws.config.update({
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: process.env.AWS_REGION,
 });
-const s3 = new aws.S3();
+const { S3 } = require('@aws-sdk/client-s3');
+const s3 = new S3();
 
 // Function to upload a file to AWS S3
 const uploadFileToS3 = async (file) => {
