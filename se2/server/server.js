@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const aws = require('aws-sdk');
@@ -8,7 +9,7 @@ require('dotenv').config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-
+app.use(express.static(path.join(__dirname, 'public')));
 // Connect to MongoDB
 const connectDB = async () => {
   try {
@@ -39,7 +40,8 @@ aws.config.update({
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: process.env.AWS_REGION,
 });
-const s3 = new aws.S3();
+const { S3 } = require('@aws-sdk/client-s3');
+const s3 = new S3();
 
 // Function to upload a file to AWS S3
 const uploadFileToS3 = async (file) => {
